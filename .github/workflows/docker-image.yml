@@ -1,14 +1,15 @@
 name: Docker Image CI
 
-#on:
-#  push:
-#    branches: [ master ]
-#  pull_request:
-#    branches: [ master ]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 env:
-  LOGIN: shuu01
-  IMAGE: asdf
+  DOCKER_LOGIN: shuu01
+  DOCKER_IMAGE: webcalc 
+  DOCKER_PASS: password1 
 
 jobs:
 
@@ -17,10 +18,12 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
+    - name: Login to docker.io
+      run:  echo ${{ secrets.DOCKER_PASS }} | docker login -u ${{ secrets.DOCKER_LOGIN }} --password-stdin
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file Dockerfile --tag $DOCKER_LOGIN/$DOCKER_IMAGE:${GITHUB_REF##*/}
     - name: Push image to dockerhub
-      run: docker push 
+      run: docker push  $DOCKER_LOGIN/$DOCKER_IMAGE:${GITHUB_REF##*/}
 
   
