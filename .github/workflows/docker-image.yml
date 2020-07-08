@@ -36,6 +36,6 @@ jobs:
     needs: build
     steps:
       - name: docker run
-        run: docker run $DOCKER_LOGIN/$DOCKER_IMAGE -p 127.0.0.1:8000:8000 -d
+        run: docker run -p 127.0.0.1:8000:8000 -d $DOCKER_LOGIN/$DOCKER_IMAGE 
       - name: test
         run: curl -s -X POST "http://127.0.0.1:8000/sum" -H  "accept:application/json" -H "Content-Type:application/json" -d '{"a":1,"b":2}'
