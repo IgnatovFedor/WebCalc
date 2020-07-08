@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from starlette.responses import RedirectResponse
 
 
 class Item(BaseModel):
@@ -8,6 +9,12 @@ class Item(BaseModel):
 
 
 app = FastAPI()
+
+
+@app.get("/", include_in_schema=False)
+async def redirect():
+    response = RedirectResponse(url='/docs')
+    return response
 
 
 @app.post("/sum")

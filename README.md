@@ -1,13 +1,13 @@
 Запуск веб-сервиса:
 
 ```bash
-git clone https://github.com/IgnatovFedor/WebCalc
+git clone https://github.com/IgnatovFedor/WebCalc.git
 cd WebCalc
 pip install -r requirements.txt
 uvicorn webcalc.main:app --reload
 ```
 
-Swagger доступен по `http://127.0.0.1:8000/docs`
+Swagger доступен по адресу `http://127.0.0.1:8000/docs`
 
 Эндпоинты:
 - `/sum` - вычисляет сумму аргументов
