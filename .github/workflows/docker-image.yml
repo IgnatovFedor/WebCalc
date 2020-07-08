@@ -38,5 +38,4 @@ jobs:
       - name: docker run
         run: docker run $DOCKER_LOGIN/$DOCKER_IMAGE -p 127.0.0.1:8000:8000 -d
       - name: test
-        run: curl -s -X POST "http://127.0.0.1:8000/sum" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{\"a\":1,\"b\":2}"
-  
+        run: curl -s -X POST "http://127.0.0.1:8000/sum" -H  "accept: application/json" -H  "Content-Type: application/json" -d '{"a":1,"b":2}'
