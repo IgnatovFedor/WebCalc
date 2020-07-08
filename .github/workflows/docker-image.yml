@@ -26,4 +26,10 @@ jobs:
     - name: Push image to dockerhub
       run: docker push  $DOCKER_LOGIN/$DOCKER_IMAGE:${GITHUB_REF##*/}
 
+  test:
+    
+    runs-on: $DOCKER_LOGIN/$DOCKER_IMAGE:${GITHUB_REF##*/}
+    steps:
+      - name: hello
+        run: echo 'hello'
   
