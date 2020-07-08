@@ -19,7 +19,7 @@ jobs:
 
     steps:
     - name: Login to docker.io
-      run:  echo ${DOCKER_PASS} | docker login -u ${DOCKER_LOGIN} --password-stdin
+      run:  echo $DOCKER_PASS | docker login -u $DOCKER_LOGIN --password-stdin
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag $DOCKER_LOGIN/$DOCKER_IMAGE:${GITHUB_REF##*/}
